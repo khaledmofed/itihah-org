@@ -37,4 +37,4 @@ RUN chown -R www-data:www-data storage bootstrap/cache \
     && chmod -R 775 storage bootstrap/cache
 
 # Run migrations, import data, then start Apache
-CMD php artisan migrate --force && php artisan cmac:import && apache2-foreground
+CMD php artisan migrate --force && php artisan cmac:import && php artisan storage:link --force && apache2-foreground
