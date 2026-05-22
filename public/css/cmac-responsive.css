@@ -1,0 +1,139 @@
+/* ============================================================
+   CMAC Global Responsive Fixes
+   ============================================================ */
+
+/* ── Home: News Grid ── */
+.home-news-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* ── Home: Events Grid ── */
+.home-events-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+}
+
+/* ── Home: Hero Stats Bar ── */
+.hero-stats-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    width: 100%;
+    margin-top: 20px;
+}
+.hero-stats-bar .stat-item {
+    text-align: center;
+    padding: 10px 8px;
+    flex: 1 1 0;
+    min-width: 70px;
+    background: #2166a994;
+    border-radius: 10px;
+    border: 2px solid #8ac2e0;
+}
+.hero-stats-bar .stat-item .stat-num {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #fff;
+    font-family: 'Cormorant', 'Tajawal', serif;
+    line-height: 1.1;
+}
+.hero-stats-bar .stat-item .stat-label {
+    font-size: 13px;
+    color: rgba(255,255,255,0.9);
+    font-weight: 500;
+    margin-top: 4px;
+}
+
+/* ============================================================
+   Tablet: 768px - 1024px
+   ============================================================ */
+@media (max-width: 1024px) {
+    .home-news-grid   { grid-template-columns: repeat(2, 1fr); gap: 22px; }
+    .home-events-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+}
+
+/* ============================================================
+   Mobile: ≤ 767px
+   ============================================================ */
+@media (max-width: 767px) {
+
+    /* ── Grids → 1 column ── */
+    .home-news-grid   { grid-template-columns: 1fr !important; gap: 18px; padding: 0 16px; }
+    .home-events-grid { grid-template-columns: 1fr !important; gap: 18px; }
+
+    /* ── Hero stats → 2 per row ── */
+    .hero-stats-bar .stat-item {
+        flex: 1 1 calc(50% - 4px) !important;
+        min-width: 0;
+    }
+    .hero-stats-bar .stat-item .stat-num  { font-size: 1.4rem; }
+    .hero-stats-bar .stat-item .stat-label { font-size: 11px; }
+
+    /* ── Hero video panel → hide on mobile ── */
+    .hero-wrap { display: none !important; }
+
+    /* ── Hero text sizing ── */
+    .elementor-265 .elementor-widget-text-editor p { font-size: 15px !important; }
+
+    /* ── Section vertical padding ── */
+    .elementor-265 [style*="padding:80px 0"] { padding: 45px 0 !important; }
+
+    /* ── Inner page hero title ── */
+    .elementor-1671 .elementor-element-d0fff18 .elementor-heading-title {
+        font-size: clamp(26px, 7vw, 38px) !important;
+    }
+
+    /* ── News listing: title size on mobile cards ── */
+    .news-title { font-size: 17px !important; line-height: 1.45 !important; }
+
+    /* ── Events listing: card padding ── */
+    .event-card-body { padding: 16px !important; }
+
+    /* ── Forms: 2-col grids → 1 col ── */
+    div[style*="grid-template-columns:repeat(2,1fr)"],
+    div[style*="grid-template-columns: repeat(2, 1fr)"] {
+        grid-template-columns: 1fr !important;
+    }
+
+    /* ── Container padding ── */
+    .container { padding: 0 14px !important; }
+
+    /* ── Tables: horizontal scroll ── */
+    .table-responsive { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+    /* ── About section image ── */
+    .elementor-265 .elementor-element-4cbae86 img { max-width: 130% !important; }
+}
+
+/* ============================================================
+   Small Mobile: ≤ 480px
+   ============================================================ */
+@media (max-width: 480px) {
+
+    /* ── Hero stats → still 2 per row on very small screens ── */
+    .hero-stats-bar .stat-item { flex: 1 1 calc(50% - 4px) !important; }
+
+    /* ── Hero heading ── */
+    .elementor-265 .elementor-element-268d2bd .elementor-heading-title {
+        font-size: clamp(22px, 8vw, 32px) !important;
+        max-width: 100% !important;
+    }
+
+    /* ── Sections padding ── */
+    [style*="padding:80px 0"],
+    [style*="padding: 80px 0"] { padding: 40px 0 !important; }
+    [style*="margin-bottom:50px"],
+    [style*="margin-bottom: 50px"] { margin-bottom: 30px !important; }
+
+    /* ── News listing grid → 1 col ── */
+    .news-grid { grid-template-columns: 1fr !important; }
+
+    /* ── News title ── */
+    .news-title { font-size: 16px !important; }
+}
