@@ -36,5 +36,5 @@ RUN composer install --no-dev --optimize-autoloader --no-interaction
 RUN chown -R www-data:www-data storage bootstrap/cache \
     && chmod -R 775 storage bootstrap/cache
 
-# Run migrations and start Apache
-CMD php artisan migrate --force && apache2-foreground
+# Run migrations, import data, then start Apache
+CMD php artisan migrate --force && php artisan cmac:import && apache2-foreground
