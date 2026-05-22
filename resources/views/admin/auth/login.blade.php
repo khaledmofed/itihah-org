@@ -59,10 +59,13 @@
             border-color: #2166A9;
             box-shadow: 0 0 0 3px rgba(33,102,169,0.12);
         }
+        .input-wrap {
+            position: relative;
+        }
         .field-wrap .field-icon {
             position: absolute;
             top: 50%; right: 0.9rem;
-            transform: translateY(50%);
+            transform: translateY(-50%);
             color: #aaa;
             font-size: 1rem;
             pointer-events: none;
@@ -120,14 +123,18 @@
             @csrf
             <div class="field-wrap">
                 <label>البريد الإلكتروني</label>
-                <i class="bi bi-envelope field-icon"></i>
-                <input type="email" name="email" placeholder="admin@example.com"
-                    value="{{ old('email') }}" required autofocus>
+                <div class="input-wrap">
+                    <i class="bi bi-envelope field-icon"></i>
+                    <input type="email" name="email" placeholder="admin@example.com"
+                        value="{{ old('email') }}" required autofocus>
+                </div>
             </div>
             <div class="field-wrap">
                 <label>كلمة المرور</label>
-                <i class="bi bi-lock field-icon"></i>
-                <input type="password" name="password" placeholder="••••••••" required>
+                <div class="input-wrap">
+                    <i class="bi bi-lock field-icon"></i>
+                    <input type="password" name="password" placeholder="••••••••" required>
+                </div>
             </div>
             <div class="d-flex align-items-center mb-3">
                 <input class="form-check-input mt-0 me-2" type="checkbox" name="remember" id="remember">
