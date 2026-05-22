@@ -36,19 +36,29 @@ class ImportData extends Command
                 continue;
             }
 
-            DB::table($table)->truncate();
+            // Skip if table already has data — don't overwrite admin changes
+            if (DB::table($table)->exists()) {
+                $this->line("  skip  $table (already has data)");
+
+                // Still fix the sequence in case it's off
+                if (config('database.default') === 'pgsql') {
+                    DB::statement("SELECT setval('{$table}_id_seq', COALESCE((SELECT MAX(id) FROM \"{$table}\"), 1))");
+                }
+                continue;
+            }
+
             $rows = array_map(fn($r) => (array) $r, $rows);
 
             foreach (array_chunk($rows, 50) as $chunk) {
                 DB::table($table)->insert($chunk);
             }
 
-            // Reset PostgreSQL sequence so next INSERT doesn't conflict
+            // Reset PostgreSQL sequence
             if (config('database.default') === 'pgsql') {
                 DB::statement("SELECT setval('{$table}_id_seq', COALESCE((SELECT MAX(id) FROM \"{$table}\"), 1))");
             }
 
-            $this->info("  ✓  $table — " . count($rows) . ' rows');
+            $this->info("  ✓  $table — " . count($rows) . ' rows imported');
         }
 
         $this->info('Import complete!');
