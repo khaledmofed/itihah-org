@@ -43,6 +43,11 @@ class ImportData extends Command
                 DB::table($table)->insert($chunk);
             }
 
+            // Reset PostgreSQL sequence so next INSERT doesn't conflict
+            if (config('database.default') === 'pgsql') {
+                DB::statement("SELECT setval('{$table}_id_seq', COALESCE((SELECT MAX(id) FROM \"{$table}\"), 1))");
+            }
+
             $this->info("  ✓  $table — " . count($rows) . ' rows');
         }
 
